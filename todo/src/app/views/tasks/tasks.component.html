@@ -4,24 +4,35 @@
   </div>
   <!--p _ngcontent-xkj-c20="" class="card-category">New employees on 15th September, 2016</p></div-->
   <div _ngcontent-xkj-c20="" class="card-body table-responsive">
-    <table _ngcontent-xkj-c20="" class="table table-hover">
-      <thead _ngcontent-xkj-c20="" class="text-warning">
-      <th _ngcontent-xkj-c20="">ID</th>
-      <th _ngcontent-xkj-c20="">Title</th>
-      <th _ngcontent-xkj-c20="">Priority</th>
-      <th _ngcontent-xkj-c20="">Completed</th>
-      <th _ngcontent-xkj-c20="">Category</th>
-      <th _ngcontent-xkj-c20="">Date</th>
+    <table class="table table-hover">
+      <thead class="text-warning">
+      <th>#</th>
+      <th>Название</th>
+      <th>Категория</th>
+      <th>Приоритет</th>
+      <th>Дата</th>
+      <th>Статус</th>
+
       </thead>
-      <tbody _ngcontent-xkj-c20="">
-      <tr *ngFor="let task of tasks">
-        <td _ngcontent-xkj-c20="">{{task.id}}</td>
-        <td _ngcontent-xkj-c20="">{{task.title}}</td>
-        <td _ngcontent-xkj-c20=""></td>
-        <td _ngcontent-xkj-c20=""></td>
-        <td _ngcontent-xkj-c20=""></td>
-        <td _ngcontent-xkj-c20=""></td>
+      <tbody>
+      <tr *ngFor="let task of tasks; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{task.title}}</td>
+        <td>{{task.category != null ? task.category.title : 'Без категории'}}</td>
+        <td>{{task.priority != null ? task.priority.title : 'Без приоритета'}}</td>
+        <td>{{task.date != null ? (task.date | date : 'short') : 'Без даты'}}</td>
+        <td>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input [checked]="task.completed" class="form-check-input" type="checkbox" value="">
+              <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+            </label>
+          </div>
+        </td>
       </tr>
+
       </tbody>
     </table>
   </div>
